@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  traefik-log-separator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./log:/log:ro
+      - ./log/output:/log/output
+  traefik:
+    image: traefik:v2.9.5
+    command: >
+      --api
+      --entryPoints.web.address=:80
+      --providers.docker.exposedByDefault=false
+      --accesslog=true
+      --accesslog.format=json
+      --accesslog.filepath=/log/access.log
+    ports:
+      - 8080:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./log:/log
+    labels:
+      traefik.enable: true
+      traefik.http.routers.traefik.rule: "PathPrefix(`/traefik`) || PathPrefix(`/api`)"
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.entrypoints: web
+      traefik.http.routers.traefik.middlewares: strip
+      traefik.http.middlewares.strip.stripprefix.prefixes: /traefik
