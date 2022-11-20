@@ -1,4 +1,4 @@
-module traefik-log-separator
+module github.com/bonsai-oss/traefik-log-separator-go
 
 go 1.19
 

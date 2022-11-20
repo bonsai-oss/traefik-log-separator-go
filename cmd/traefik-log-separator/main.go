@@ -9,11 +9,12 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-	"traefik-log-separator/internal/model"
-	"traefik-log-separator/internal/writer"
 
 	"github.com/fsnotify/fsnotify"
 	"gopkg.in/alecthomas/kingpin.v2"
+
+	"github.com/bonsai-oss/traefik-log-separator-go/internal/model"
+	"github.com/bonsai-oss/traefik-log-separator-go/internal/writer"
 )
 
 type parameters struct {

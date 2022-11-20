@@ -40,5 +40,8 @@ func CloseAll() {
 }
 
 func Close(name string) {
-	selectors[name].(*os.File).Close()
+	file := selectors[name].(*os.File)
+	if file != nil {
+		file.Close()
+	}
 }
