@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/fsnotify/fsnotify"
-	"gopkg.in/alecthomas/kingpin.v2"
 
 	"github.com/bonsai-oss/traefik-log-separator-go/internal/model"
 	"github.com/bonsai-oss/traefik-log-separator-go/internal/writer"
